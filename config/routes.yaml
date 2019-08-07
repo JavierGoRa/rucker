@@ -1,0 +1,36 @@
+index:
+    path: /
+    controller: App\Controller\HomeController::index
+
+player:
+    path: /player/{name}
+    controller: App\Controller\PlayerInfoController::index
+    methods: [GET]
+
+team:
+    path: /team
+    controller: App\Controller\TeamController::index
+
+formteam:
+    path: /team/new
+    controller: App\Controller\TeamController::index
+
+addteam:
+    path: /team/add
+    controller: App\Controller\TeamController::save
+    methods: [POST, GET]
+    
+searchteam:
+    path: /team/{name}
+    controller: App\Controller\TeamController::search
+    methods: [POST, GET]
+    
+updateteam:
+    path: /team/update/{id}
+    controller: App\Controller\TeamController::update
+    methods: [POST, GET]
+    
+deleteteam:
+    path: /team/delete/{id}
+    controller: App\Controller\TeamController::delete
+    methods: [POST, GET]
