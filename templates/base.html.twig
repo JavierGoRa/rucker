@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
         <link rel="icon" href="{{asset('mainlogo.png', 'image') }}">
         <style>
             body{
@@ -69,6 +68,9 @@
                 height: 100vh;
             }
         </style>
+        
+        {% block stylesheets %}{% endblock %}
+
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <script type="text/javascript">
             $(window).on('scroll', function(){
@@ -81,6 +83,7 @@
         </script>
     </head>
     <body>
+        {% block navBar %}
         <header>            
             <nav>
                 <div class="logo">
@@ -98,6 +101,7 @@
                 </ul>
             </nav>
         </header>
+        {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

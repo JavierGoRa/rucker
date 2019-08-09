@@ -4,10 +4,50 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Team;
+
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class TeamController extends AbstractController
 {
+
+    public function create(Request $request){
+        $team = new Team();
+        $form = $this->createFormBuilder($team)
+            //->setAction($this->generateUrl('addteam'))
+            ->setMethod('POST')
+            ->add('name', TextType::class)
+            ->add('logo', FileType::class)
+            ->add('category', ChoiceType::class, [
+                'choices' => [
+                    'Junior' => 'Junior',
+                    'Senior' => 'Senior',
+                ]
+            ])
+            ->add('nationality', CountryType::class)
+            ->add('city', TextType::class)
+            ->add('submit', SubmitType::class)
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
+            $team->setLogo(base64_encode(file_get_contents($team->getLogo())));
+            $em->persist($team);
+            $em->flush();
+        }
+
+        return $this->render('team/formTeam.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
     public function index()
     {
         return $this->render('team/index.html.twig', [
@@ -16,7 +56,7 @@ class TeamController extends AbstractController
         ]);
     }
 
-    public function save(){
+    public function save(Request $request){
 
         $entityManager = $this->getDoctrine()->getManager();
 
@@ -55,7 +95,7 @@ class TeamController extends AbstractController
             'team' => $team
         ]);
     }
-
+  
     public function update($id){
 
         $doctrine = $this->getDoctrine();

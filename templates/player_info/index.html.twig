@@ -8,10 +8,12 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
     .imgbody{
         width: 100%;
+        background-image: url("{{asset('a.jpg', 'image') }}");
+        background-repeat: no-repeat;
     }
 </style>
 
-<img class="imgbody" src="{{asset('a.jpg', 'image') }}">
+<img class="imgbody" src="">
 
 <div class="example-wrapper">
     <h1>Name of the player: {{name}} ✅</h1>

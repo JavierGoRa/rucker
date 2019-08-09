@@ -15,6 +15,11 @@ formteam:
     path: /team/new
     controller: App\Controller\TeamController::index
 
+formaddteam:
+    path: /team/form
+    controller: App\Controller\TeamController::create
+    methods: [POST, GET]
+
 addteam:
     path: /team/add
     controller: App\Controller\TeamController::save
