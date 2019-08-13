@@ -20,34 +20,21 @@ class Player implements UserInterface
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank
-     * @Assert\Regex("^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$")
-     * @Assert\NotBlank
-     * @Assert\email(
-     *  message = "This nick is not valid",
-     *  checkMX = true
-     * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank
-     * @Assert\Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})")
      */
     private $password;
 
     /**
      * @ORM\Column(type="text", length=255)
-     * @Assert\NotBlank
-     * @Assert\Regex("/[a-zA-Z ]+/")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     * @Assert\Regex("/[a-zA-Z ]+/")
      */
     private $lastName;
 
@@ -103,8 +90,6 @@ class Player implements UserInterface
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank
-     * @Assert\Regex("\A^[A-Za-z\d_-]+$\z")
      */
     private $nickName;
 

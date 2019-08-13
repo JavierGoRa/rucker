@@ -7,7 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -29,7 +29,7 @@ class UserController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $user->setRole('ROLE_USER');
             $encoded = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encoded);
@@ -37,7 +37,7 @@ class UserController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            return $this->redirect('/signin');
+            return $this->redirect('/login');
 
         }
 
@@ -46,21 +46,15 @@ class UserController extends AbstractController
         ]);
     }
 
-    public function signin(Request $request)
-    {
+    public function login(AuthenticationUtils $autenticationUtils){
+        $error = $autenticationUtils->getLastAuthenticationError();
 
-        $user = new Player();
-        $form = $this->createFormBuilder($user)
-            ->setMethod('POST')
-            ->add('email', EmailType::class)
-            ->add('password', PasswordType::class)
-            ->add('submit', SubmitType::class)
-            ->getForm();
+        $lastUsername = $autenticationUtils->getLastUsername();
 
-        $form->handleRequest($request);
-
-        return $this->render('user/signin.html.twig', [
-            'form' => $form->createView()
-        ]);
+        return $this->render('user/login.html.twig', array(
+            'error' => $error,
+            'last_username' => $lastUsername
+        ));
     }
+
 }

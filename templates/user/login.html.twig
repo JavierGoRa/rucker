@@ -75,7 +75,7 @@
             font-size: 12px;
         }
 
-        .box button[type="submit"] {
+        .box input[type="submit"] {
             background: transparent;
             border: none;
             outline: none;
@@ -92,23 +92,33 @@
 {% block body %}
     {% block navBar %}{% endblock %}
 
+    
+        {% if error %}
+
+            <div class="alert alert-error">
+                {{ error.messagekey|trans(error.messageData, 'security') }}
+            </div>
+
+        {% endif %}
+
+            {{dump(app.user)}}
 
     <div class="box">
         <h2>It´s time to start</h2>
 
-        {{form_start(form)}}
+        <form action="{{ path('login') }}" method="POST">
             <div class="inputBox">
-                {{form_widget(form.email)}}
-            <label>Email</label>
+                <input type="email" id="username" required name="_username" value="{{ last_username }}"></input>
+                <label>Email</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" id="password" required name="_password"></input>
+                <label>Password</label>
             </div>
 
-            <div class="inputBox">
-                {{form_widget(form.password)}}
-            <label>Password</label>
-            </div>
-
-            {{form_widget(form.submit)}}
-        {{form_end(form)}}
+            <input type="submit" value="Submit"/>
+            
+        </form>
 
     </div>
 {% endblock %}

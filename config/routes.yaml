@@ -20,11 +20,6 @@ formuserregister:
     controller: App\Controller\UserController::register
     methods: [POST, GET]
 
-formusersignin:
-    path: /signin
-    controller: App\Controller\UserController::signin
-    methods: [POST, GET]
-
 addteam:
     path: /team/add
     controller: App\Controller\TeamController::save
@@ -44,3 +39,10 @@ deleteteam:
     path: /team/delete/{id}
     controller: App\Controller\TeamController::delete
     methods: [POST, GET]
+
+login:
+    path: /login
+    controller: App\Controller\UserController::login
+
+logout:
+    path: /logout
