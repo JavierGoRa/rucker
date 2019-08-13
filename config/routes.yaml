@@ -2,11 +2,6 @@ index:
     path: /
     controller: App\Controller\HomeController::index
 
-player:
-    path: /player/{name}
-    controller: App\Controller\PlayerInfoController::index
-    methods: [GET]
-
 team:
     path: /team
     controller: App\Controller\TeamController::index
@@ -18,6 +13,16 @@ formteam:
 formaddteam:
     path: /team/form
     controller: App\Controller\TeamController::create
+    methods: [POST, GET]
+
+formuserregister:
+    path: /register
+    controller: App\Controller\UserController::register
+    methods: [POST, GET]
+
+formusersignin:
+    path: /signin
+    controller: App\Controller\UserController::signin
     methods: [POST, GET]
 
 addteam:

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="{{asset('mainlogo.png', 'image') }}">
+        <link rel="icon" href="{{asset('iconWindow.png', 'image') }}">
         <style>
             body{
                 margin: 0;
@@ -92,11 +92,12 @@
                 </a>
                 </div>
                 <ul>
-                    <li><a href="#" class="active">Players</a></li>
+                    <li><a href="#" {# class="active" #}>Players</a></li>
                     <li><a href="/team">Teams</a></li>
                     <li><a href="#">Tournaments</a></li>
-                    <li><a href="#">Sign in</a></li>
-                    <li><a href="#">Register</a></li>
+                    <li><a href="#">Leagues</a></li>
+                    <li><a href="/signin">Sign in</a></li>
+                    <li><a href="/register">Register</a></li>
 
                 </ul>
             </nav>
