@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -21,6 +22,16 @@ class UserController extends AbstractController
     /**
      * @Route("/user", name="user")
      */
+    public function index(AuthenticationUtils $autenticationUtils)
+    {
+
+        return $this->render('user/index.html.twig', [
+            'controller_name' => 'Hola cacho de mierda',
+            'user' => 'user'
+        ]);    
+        
+    }
+
     public function register(Request $request, UserPasswordEncoderInterface $encoder)
     {
 

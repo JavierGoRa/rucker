@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="{{asset('iconWindow.png', 'image') }}">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <style>
             body{
                 margin: 0;
@@ -96,8 +97,16 @@
                     <li><a href="/team">Teams</a></li>
                     <li><a href="#">Tournaments</a></li>
                     <li><a href="#">Leagues</a></li>
-                    <li><a href="/login">Sign in</a></li>
-                    <li><a href="/register">Register</a></li>
+                    {% if app.user != null %}
+                    
+                        <li><a href="/logout">Logout</a></li>
+
+                    {% else %}
+
+                        <li><a href="/login">Sign in</a></li>
+                        <li><a href="/register">Register</a></li>
+
+                    {% endif %}
 
                 </ul>
             </nav>
@@ -105,5 +114,7 @@
         {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+
     </body>
 </html>

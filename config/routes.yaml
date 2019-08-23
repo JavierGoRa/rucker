@@ -2,6 +2,10 @@ index:
     path: /
     controller: App\Controller\HomeController::index
 
+user:
+    path: /user
+    controller: App\Controller\UserController::index
+
 team:
     path: /team
     controller: App\Controller\TeamController::index

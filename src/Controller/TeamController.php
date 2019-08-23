@@ -25,8 +25,8 @@ class TeamController extends AbstractController
             ->add('logo', FileType::class)
             ->add('category', ChoiceType::class, [
                 'choices' => [
-                    'Junior' => 'Junior',
-                    'Senior' => 'Senior',
+                    '3x3' => '5x5',
+                    '5x5' => '5x5',
                 ]
             ])
             ->add('nationality', CountryType::class)
